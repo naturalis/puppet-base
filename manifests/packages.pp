@@ -1,10 +1,10 @@
 class base::packages {
   case $operatingsystem {
     centos, redhat: {
-      singleton_packages( 'wget', 'vim-enhanced' )
+      singleton_packages( 'wget', 'vim-enhanced', 'htop' )
     }
     debian, ubuntu: {
-      singleton_packages( 'curl', 'vim', 'htop', íftop' )
+      singleton_packages( 'curl', 'vim', 'htop', 'iftop' )
     }
     default: {
       fail("Unrecognized operating system")
