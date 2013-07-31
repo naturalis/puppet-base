@@ -1,6 +1,7 @@
 class base::packages {
   case $operatingsystem {
     centos, redhat: {
+      include repoforge
       singleton_packages( 'wget', 'vim-enhanced', 'htop' )
     }
     debian, ubuntu: {
