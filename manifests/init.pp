@@ -36,6 +36,7 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base {
+  include base::packages
   create_resources('base::users', hiera('baseusers', []))
 
 }
