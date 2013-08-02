@@ -37,7 +37,10 @@ define  base::users(
   $username = $title,
   $comment,
   $ssh_key = '',
-  $shell = '/bin/bash',
+  $shell = '/bin/zsh',
+  $screenrc = 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
+  $vimrc = 'http://git.grml.org/f/grml-etc-core/etc/vim/vimrc',
+  $zshrc = 'http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc',
 
 ) {
   user { $username:
@@ -49,44 +52,61 @@ define  base::users(
     comment     => $comment,
   }
 
-    file { "/home/${username}":
-        ensure  => directory,
-        owner   => $username,
-        group   => $username,
-        mode    => '0700',
+  file { "/home/${username}":
+    ensure  => directory,
+    owner   => $username,
+    group   => $username,
+    mode    => '0700',
+  }
+
+  download { "/home/${username}/.screenrc":
+    uri     => "${screenrc}",
+    timeout => 900,
+    require => File["/home/${username}"],
+  }
+  download { "/home/${username}/.vimrc":
+    uri     => "${vimrc}",
+    timeout => 900,
+    require => File["/home/${username}"],
+  }
+  download { "/home/${username}/.zshrc":
+    uri     => "${zshrc}",
+    timeout => 900,
+    require => File["/home/${username}"],
+  }
+
+
+  file { "/home/${username}/.ssh":
+    ensure  => directory,
+    owner   => $username,
+    group   => $username,
+    mode    => '0700',
+  }
+
+  file { "/home/${username}/.ssh/authorized_keys":
+    ensure  => present,
+    owner   => $username,
+    group   => $username,
+    mode    => '0600',
+    require => File["/home/${username}/.ssh"],
     }
 
-    file { "/home/${username}/.ssh":
-        ensure  => directory,
-        owner   => $username,
-        group   => $username,
-        mode    => '0700',
-    }
+  Ssh_authorized_key {
+    require =>  File["/home/${username}/.ssh/authorized_keys"]
+  }
 
-    file { "/home/${username}/.ssh/authorized_keys":
-        ensure  => present,
-        owner   => $username,
-        group   => $username,
-        mode    => '0600',
-        require => File["/home/${username}/.ssh"],
-    }
+  $ssh_key_defaults = {
+    ensure  => present,
+    user    => $username,
+    type    => 'ssh-rsa'
+  }
 
-    Ssh_authorized_key {
-        require =>  File["/home/${username}/.ssh/authorized_keys"]
+  if $ssh_key {
+    ssh_authorized_key { $ssh_key['comment']:
+      ensure  => present,
+      user    => $username,
+      type    => $ssh_key['type'],
+      key     => $ssh_key['key'],
     }
-
-    $ssh_key_defaults = {
-        ensure  => present,
-        user    => $username,
-        type    => 'ssh-rsa'
-    }
-
-    if $ssh_key {
-        ssh_authorized_key { $ssh_key['comment']:
-            ensure  => present,
-            user    => $username,
-            type    => $ssh_key['type'],
-            key     => $ssh_key['key'],
-        }
-    }
+  }
 }
