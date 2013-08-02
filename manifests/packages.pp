@@ -2,10 +2,28 @@ class base::packages {
   case $operatingsystem {
     centos, redhat: {
       require repoforge
-      singleton_packages( 'sudo', 'screen', 'zsh', 'mc', 'wget', 'vim-enhanced', 'htop' )
+      singleton_resources(
+        Package['sudo'],
+        Package['screen'],
+        Package['zsh'],
+        Package['mc'],
+        Package['wget'],
+        Package['vim-enhanced'],
+        Package['htop'],
+      )
     }
     debian, ubuntu: {
       singleton_packages( 'sudo', 'screen', 'zsh', 'mc', 'curl', 'vim', 'htop', 'iftop' )
+      singleton_resources(
+        Package['sudo'],
+        Package['screen'],
+        Package['zsh'],
+        Package['mc'],
+        Package['curl'],
+        Package['vim'],
+        Package['htop'],
+        Package['iftop'],
+      )
     }
     default: {
       fail("Unrecognized operating system")
