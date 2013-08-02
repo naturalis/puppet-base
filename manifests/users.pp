@@ -34,8 +34,8 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 define  base::users(
-  $username = $title,
   $comment,
+  $username = $title,
   $ssh_key = '',
   $shell = '/bin/zsh',
   $screenrc = 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
