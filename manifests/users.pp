@@ -74,6 +74,24 @@ define  base::users(
     timeout => 900,
     require => File["/home/${username}"],
   }
+  file { "/home/${username}/.screenrc":
+    owner   => $username,
+    group   => $username,
+    mode    => '0644',
+    require => Download["/home/${username}/.screenrc"],
+  }
+  file { "/home/${username}/.vimrc":
+    owner   => $username,
+    group   => $username,
+    mode    => '0644',
+    require => Download["/home/${username}/.vimrc"],
+  }
+  file { "/home/${username}/.zshrc":
+    owner   => $username,
+    group   => $username,
+    mode    => '0644',
+    require => Download["/home/${username}/.zshrc"],
+  }
 
 
   file { "/home/${username}/.ssh":
