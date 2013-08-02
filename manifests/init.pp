@@ -38,5 +38,4 @@
 class base {
   include base::packages
   create_resources('base::users', hiera('baseusers', []))
-
 }
