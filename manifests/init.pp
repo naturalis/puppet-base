@@ -36,13 +36,14 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base {
-  stage { 'first': before => Stage['main'] }
-  stage { 'last': require => Stage['main'] }
-  class {
-    'base::repoforge': stage => first;
-    'base::packages': stage => main;
-    'base::config':   stage => last;
+  class { 'base::repoforge': }
+  class { 'base::packages':
+    require => Class['base::repoforge'],
   }
+  class { 'base::config':
+    require => Class['base::packages'],
+  }
+
 #  include base::packages
   create_resources('base::users', hiera('baseusers', []))
 }
