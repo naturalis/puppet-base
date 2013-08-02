@@ -36,13 +36,11 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base {
-  class { 'base::repoforge': 
-  }
-  class { 'base::packages':
-    require => Class['base::repoforge'],
-  }
   class { 'base::config':
-    require => Class['base::packages'],
+  } ->
+  class { 'base::packages':
+  } ->
+  class { 'base::repoforge':
   }
 
 #  include base::packages
