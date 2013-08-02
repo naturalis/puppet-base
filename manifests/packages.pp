@@ -1,6 +1,7 @@
 class base::packages {
   case $operatingsystem {
     centos, redhat: {
+      include repoforge
       Class['repoforge'] -> Class['base::packages']
       singleton_resources(
         Package['sudo'],
