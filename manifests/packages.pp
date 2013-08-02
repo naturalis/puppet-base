@@ -13,7 +13,6 @@ class base::packages {
       )
     }
     debian, ubuntu: {
-      singleton_packages( 'sudo', 'screen', 'zsh', 'mc', 'curl', 'vim', 'htop', 'iftop' )
       singleton_resources(
         Package['sudo'],
         Package['screen'],
