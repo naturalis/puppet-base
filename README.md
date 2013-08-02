@@ -57,8 +57,20 @@ nova boot --user-data cloud-data --meta role=base --flavor m1.tiny --key-name ad
 ```
 Result
 -------------
+This module installs:
+- sudo
+- screen
+- zsh
+- mc
+- curl
+- vim
+- htop
+- iftop
+- ntp
 
+For every user in the hiera data (see hiera example) this module create the user and copy basic files as .screenrc and ssh keys to the user home dir.
 
+The ntp service is configured and started, see hiera example to override ntp servers.
 Limitations
 -------------
 This module has been built on and tested against Puppet 3.2.3.
