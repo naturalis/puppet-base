@@ -37,7 +37,6 @@
 #
 class base {
   class { 'base::repoforge': 
-    before => Class['base::packages'],
   }
   class { 'base::packages':
     require => Class['base::repoforge'],
