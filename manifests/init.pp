@@ -36,6 +36,13 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base {
-  include base::packages
+  stage { 'first': before => Stage['main'] }
+  stage { 'last': require => Stage['main'] }
+  class {
+    'base::repoforge': stage => first;
+    'base::packages': stage => main;
+    'base::config':   stage => last;
+  }
+#  include base::packages
   create_resources('base::users', hiera('baseusers', []))
 }
