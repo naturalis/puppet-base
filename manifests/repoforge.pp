@@ -1,3 +1,3 @@
 class base::repoforge {
-  include repoforge
+  class { '::repoforge': }
 }
