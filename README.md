@@ -50,6 +50,11 @@ Standalone
 ```
 curl https://raw.github.com/naturalis/puppet/master/private/scripts/cloud-puppet.sh > cloud-puppet.sh; chmod +x cloud-puppet.sh;./cloud-puppet.sh base
 ```
+Openstack / nova client
+```
+wget https://github.com/naturalis/puppet/raw/master/private/scripts/cloud-data
+nova boot --user-data cloud-data --meta role=base --flavor m1.tiny --key-name adminkey --image raring-x86-64 base-raring
+```
 Result
 -------------
 
@@ -62,6 +67,7 @@ The module has been tested on:
 - CentOS 6.4
 - CentOS 6.3
 - Ubuntu 12.04 precise
+- Ubuntu 13.04 raring
 
 Authors
 -------------
