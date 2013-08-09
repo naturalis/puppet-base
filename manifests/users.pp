@@ -37,6 +37,7 @@ define  base::users(
   $comment,
   $username = $title,
   $ssh_key = '',
+  $groups = 'wheel',
   $shell = '/bin/zsh',
   $screenrc = 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
   $vimrc = 'http://git.grml.org/f/grml-etc-core/etc/vim/vimrc',
@@ -51,7 +52,7 @@ define  base::users(
     shell       => $shell,
     comment     => $comment,
   }
-
+  
   file { "/home/${username}":
     ensure  => directory,
     owner   => $username,
