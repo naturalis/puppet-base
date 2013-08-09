@@ -45,9 +45,9 @@ define  base::users(
 ) {
   user { $username:
     ensure      => present,
-    uid         => $uid,
-    gid         => $gid,
-    groups      => $groups,
+    uid         => $::uid,
+    gid         => $::gid,
+    groups      => $::groups,
     shell       => $shell,
     comment     => $comment,
   }
@@ -60,19 +60,19 @@ define  base::users(
   }
 
   download { "/home/${username}/.screenrc":
-    uri     => "${screenrc}",
+    uri     => $screenrc,
     timeout => 900,
     require => File["/home/${username}"],
   }
 
   download { "/home/${username}/.vimrc":
-    uri     => "${vimrc}",
+    uri     => $vimrc,
     timeout => 900,
     require => File["/home/${username}"],
   }
 
   download { "/home/${username}/.zshrc":
-    uri     => "${zshrc}",
+    uri     => $zshrc,
     timeout => 900,
     require => File["/home/${username}"],
   }

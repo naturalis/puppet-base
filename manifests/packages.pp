@@ -1,5 +1,6 @@
+# Install packages for several operating systems
 class base::packages {
-  case $operatingsystem {
+  case $::operatingsystem {
     centos, redhat: {
       singleton_resources(
         Package['sudo'],
@@ -24,7 +25,7 @@ class base::packages {
       )
     }
     default: {
-      fail("Unrecognized operating system")
+      fail('Unrecognized operating system')
     }
   }
 }
