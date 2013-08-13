@@ -39,7 +39,7 @@ class base {
   class { 'base::packages':
   } ->
   class { 'base::config':
-  }
+  } 
 
   create_resources('base::users', hiera('baseusers', []))
 }

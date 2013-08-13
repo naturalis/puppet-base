@@ -37,18 +37,15 @@ define  base::users(
   $comment,
   $username = $title,
   $ssh_key = '',
-  $groups = 'wheel',
   $shell = '/bin/zsh',
-  $screenrc = 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
-  $vimrc = 'http://git.grml.org/f/grml-etc-core/etc/vim/vimrc',
-  $zshrc = 'http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc',
+  $groups = 'wheel',
 
 ) {
   user { $username:
     ensure      => present,
-    uid         => $::uid,
-    gid         => $::gid,
-    groups      => $::groups,
+    uid         => $uid,
+    gid         => $gid,
+    groups      => $groups,
     shell       => $shell,
     comment     => $comment,
   }
@@ -60,52 +57,28 @@ define  base::users(
     mode    => '0700',
   }
 
-  download { "/home/${username}/.screenrc":
-    uri     => $screenrc,
-    timeout => 900,
-    require => File["/home/${username}"],
-  }
-
-  download { "/home/${username}/.vimrc":
-    uri     => $vimrc,
-    timeout => 900,
-    require => File["/home/${username}"],
-  }
-
-  download { "/home/${username}/.zshrc":
-    uri     => $zshrc,
-    timeout => 900,
-    require => File["/home/${username}"],
-  }
-
-  file { "/home/${username}/.screenrc":
-    owner   => $username,
-    group   => $username,
-    mode    => '0644',
-    require => Download["/home/${username}/.screenrc"],
-  }
-
   file { "/home/${username}/.vimrc":
-    owner   => $username,
-    group   => $username,
-    mode    => '0644',
-    require => Download["/home/${username}/.vimrc"],
+    ensure  => 'link',
+    target  => '/etc/vimrc',
   }
-
+  
+  file { "/home/${username}/.screenrc":
+    ensure  => 'link',
+    target  => '/etc/screenrc',
+  }
+  
   file { "/home/${username}/.zshrc":
-    owner   => $username,
-    group   => $username,
-    mode    => '0644',
-    require => Download["/home/${username}/.zshrc"],
+    ensure  => 'link',
+    target  => '/etc/zshrc',
   }
 
   file { "/home/${username}/.ssh":
     ensure  => directory,
     owner   => $username,
     group   => $username,
-    mode    => '0700',
+    mode    => '0600',
   }
-
+  
   file { "/home/${username}/.ssh/authorized_keys":
     ensure  => present,
     owner   => $username,
