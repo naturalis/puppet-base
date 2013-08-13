@@ -2,8 +2,7 @@
 #
 define base::download ($uri, $timeout = 300) {
   exec { "download ${uri}":
-    command => "/usr/bin/wget -q '${uri}' -O ${name}",
-    creates => $name,
+    command => "/usr/bin/wget -N -q '${uri}' -O ${name}",
     timeout => $timeout,
     require => Class[ 'base::packages' ],
   }
