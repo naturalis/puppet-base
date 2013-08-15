@@ -10,6 +10,7 @@ class base::packages {
         Package['wget'],
         Package['vim-enhanced'],
         Package['htop'],
+        Package['iftop'],
       )
     }
     debian, ubuntu: {
