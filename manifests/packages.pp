@@ -11,6 +11,7 @@ class base::packages {
         Package['vim-enhanced'],
         Package['htop'],
         Package['iftop'],
+        Package['augeas'],
       )
     }
     debian, ubuntu: {
@@ -23,6 +24,7 @@ class base::packages {
         Package['vim'],
         Package['htop'],
         Package['iftop'],
+        Package['augeas'],
       )
     }
     default: {
