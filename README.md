@@ -15,6 +15,7 @@ Classes
 - base::packages
 - base::users
 - base::config
+- base::download
 
 Dependencies
 -------------
