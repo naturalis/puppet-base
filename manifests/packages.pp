@@ -24,7 +24,7 @@ class base::packages {
         Package['vim'],
         Package['htop'],
         Package['iftop'],
-        Package['augeas'],
+        Package['augeas-tools'],
       )
     }
     default: {
