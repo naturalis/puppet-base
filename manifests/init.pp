@@ -35,11 +35,14 @@
 #
 # Copyright 2013 Your name here, unless otherwise noted.
 #
-class base {
-  class { 'base::packages':
-  } ->
-  class { 'base::config':
-  } 
+class base (
+  $users_hash = '',
+) {
 
-  create_resources('base::users', hiera('baseusers', []))
+  class { 'base::packages': } -> class { 'base::config': }
+  if $users_hash != '' {
+    create_resources('base::users', $users_hash)
+  }else{
+    create_resources('base::users', hiera('baseusers',[]))
+  }
 }
