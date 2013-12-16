@@ -15,6 +15,13 @@ class base::config {
       ],
   }
 
+  augeas { "sshdns":                                                                                                                                                                                                       
+    context => "/files/etc/ssh/sshd_config",                                                                                                                                                                               
+    changes => [                                                                                                                                                                                                           
+        "set UseDNS 'no'",                                                                                                                                                                                                 
+      ],                                                                                                                                                                                                                   
+  }                                                                                                                                                                                                                        
+
   download { "/etc/screenrc":
     uri	    => 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
     timeout => 900,
