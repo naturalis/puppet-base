@@ -5,5 +5,6 @@ define base::download ($uri, $timeout = 300) {
     command => "/usr/bin/wget -N -q '${uri}' -O ${name}",
     timeout => $timeout,
     require => Class[ 'base::packages' ],
+    unless  => "/usr/bin/test -f ${name}"
   }
 }
