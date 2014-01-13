@@ -25,7 +25,7 @@ class base::config {
   augeas { "sshGSSAPIauth":                                                                                                                                                                                                       
     context => "/files/etc/ssh/sshd_config",                                                                                                                                                                               
     changes => [                                                                                                                                                                                                           
-        "set GSSAPIAuthentication 'yes'",                                                                                                                                                                                                 
+        "set GSSAPIAuthentication 'no'",                                                                                                                                                                                                 
       ],                                                                                                                                                                                                                   
   } 
   
