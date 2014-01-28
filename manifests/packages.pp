@@ -20,7 +20,6 @@ class base::packages {
         Package['screen'],
         Package['zsh'],
         Package['mc'],
-        Package['curl'],
         Package['vim'],
         Package['htop'],
         Package['iftop'],
