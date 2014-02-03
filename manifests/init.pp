@@ -36,11 +36,11 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base (
-  $users_hash = '',
+  $users_hash = undef,
 ) {
 
   class { 'base::packages': } -> class { 'base::config': }
-  if $users_hash != '' {
+  if $users_hash != undef {
     create_resources('base::users', $users_hash)
   }else{
     create_resources('base::users', hiera('baseusers',[]))
