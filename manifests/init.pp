@@ -36,14 +36,20 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base (
-  $users_hash = '',
+  $users_hash = 'hiera_based',
 ) {
 
   include stdlib
   class { 'base::packages': } -> class { 'base::config': }
-  if $users_hash != '' {
-    create_resources('base::users', parseyaml($users_hash))
-  }else{
+  
+  if $users_hash == 'hiera_based' {
     create_resources('base::users', hiera('baseusers',{}))
   }
+  elseif $users_hash == 'none' {
+    notify {'no users created':}
+  }
+  else {
+    create_resources('base::users', parseyaml($users_hash))
+  }
+
 }
