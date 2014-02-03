@@ -45,7 +45,7 @@ class base (
   if $users_hash == 'hiera_based' {
     create_resources('base::users', hiera('baseusers',{}))
   }
-  elseif $users_hash == 'none' {
+  elsif $users_hash == 'none' {
     notify {'no users created':}
   }
   else {
