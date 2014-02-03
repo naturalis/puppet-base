@@ -36,11 +36,12 @@
 # Copyright 2013 Your name here, unless otherwise noted.
 #
 class base (
-  $users_hash = undef,
+  $users_hash = '',
 ) {
 
+  include stdlib
   class { 'base::packages': } -> class { 'base::config': }
-  if $users_hash != undef {
+  if $users_hash != '' {
     create_resources('base::users', parseyaml($users_hash))
   }else{
     create_resources('base::users', hiera('baseusers',{}))
