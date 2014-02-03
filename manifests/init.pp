@@ -41,8 +41,8 @@ class base (
 
   class { 'base::packages': } -> class { 'base::config': }
   if $users_hash != undef {
-    create_resources('base::users', $users_hash)
+    create_resources('base::users', parseyaml($users_hash),{})
   }else{
-    create_resources('base::users', hiera('baseusers',[]))
+    create_resources('base::users', hiera('baseusers',{}))
   }
 }
