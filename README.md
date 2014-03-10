@@ -69,6 +69,8 @@ This module installs:
 - iftop
 - ntp
 
+For debian os family systems this module also installs the nl_NL.UTF8 locale using the locale-gen command. The exec resource can be found in manifests/config.pp
+
 For every user in the hiera data (see hiera example) this module create the user and copy basic files as .screenrc and ssh keys to the user home dir.
 
 The ntp service is configured and started, see hiera example to override ntp servers.
