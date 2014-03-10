@@ -51,7 +51,7 @@ class base::config {
     exec { "localegen":
       command => "/usr/sbin/locale-gen nl_NL.UTF-8",
       path    => "/usr/bin:/usr/sbin:/bin:/usr/local/bin",
-      unless  => "/usr/bin/locale -a | /bin/grep nl_NL.UTF-8"
+      unless  => "/usr/bin/locale -a | /bin/grep nl_NL.utf8"
     }
   }
 
