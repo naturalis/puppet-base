@@ -49,7 +49,7 @@ class base::config {
   
   if $osfamily == "debian" {
     exec { "localegen":
-      command => "/usr/bin/locale-gen nl_NL.UTF-8",
+      command => "/usr/sbin/locale-gen nl_NL.UTF-8",
       path    => "/usr/bin:/usr/sbin:/bin:/usr/local/bin",
       unless  => "/usr/bin/locale -a | /bin/grep nl_NL.UTF-8"
     }
