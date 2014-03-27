@@ -78,6 +78,29 @@ define  base::users(
     group   => $username,
     mode    => '0600',
   }
+
+  file { "/home/${username}/.config":
+    ensure  => directory,
+    owner   => $username,
+    group   => $username,
+    mode    => '0600',
+  }
+
+  file { "/home/${username}/.config/mc":
+    ensure  => directory,
+    owner   => $username,
+    group   => $username,
+    mode    => '0600',
+  }
+
+  file { "/home/${username}/.config/mc/ini":
+    source  => "puppet:///modules/base/mc_ini",
+    ensure  => "present",
+    replace => "no",
+    owner   => $username,
+    group   => $username,
+    mode    => '0600',
+  }
   
   file { "/home/${username}/.ssh/authorized_keys":
     ensure  => present,

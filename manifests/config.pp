@@ -47,6 +47,35 @@ class base::config {
     contains => 'grml'
   }
   
+  file { "/usr/share/mc/syntax/puppet.syntax":
+    source  => "puppet:///modules/base/mc_puppet.syntax",
+    require => Package['mc']
+  }
+
+  file { "/usr/share/mc/syntax/Syntax":
+    source  => "puppet:///modules/base/mc_Syntax",
+    require => Package['mc']
+  }
+
+  file { "/root/.config":
+    ensure  => directory,
+    mode    => '0600'
+  }
+
+  file { "/root/.config/mc":
+    ensure  => directory,
+    mode    => '0600',
+    require => File['/root/.config']
+  }
+
+  file { "/root/.config/mc/ini":
+    source  => "puppet:///modules/base/mc_ini",
+    replace => "no",
+    ensure  => "present",
+    mode    => '0600',
+    require => File['/root/.config/mc']
+  }
+  
   if $osfamily == "debian" {
     exec { "localegen":
       command => "/usr/sbin/locale-gen nl_NL.UTF-8",
