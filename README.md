@@ -7,7 +7,7 @@ For more information using this tool: https://github.com/naturalis/puppet-base
 
 Parameters
 -------------
-All parameters are read from hiera
+All parameters are read from defaults in code or retrieved from the Foreman. 
 
 Classes
 -------------
@@ -20,17 +20,12 @@ Classes
 Dependencies
 -------------
 - repoforge
-- ntp
+
 
 Examples
 -------------
 Hiera yaml
 ```
-ntp::servers:
-  - 0.nl.pool.ntp.org
-  - 1.nl.pool.ntp.org
-  - 2.nl.pool.ntp.org
-  - 3.nl.pool.ntp.org
 
 baseusers:
  letmein:
@@ -73,17 +68,20 @@ For debian os family systems this module also installs the nl_NL.UTF8 locale usi
 
 For every user in the hiera data (see hiera example) this module create the user and copy basic files as .screenrc and ssh keys to the user home dir.
 
-The ntp service is configured and started, see hiera example to override ntp servers.
+mc (Midnight Commander) will be configured with customized defaults, skin used is the "dark" skin and puppet syntax highlighting functionality will be added for .pp and .erb files.
+
 Limitations
 -------------
 This module has been built on and tested against Puppet 3.2.3.
 
 The module has been tested on:
+- CentOS 6.5
 - CentOS 6.4
 - CentOS 6.3
 - Ubuntu 12.04 precise
 - Ubuntu 13.04 raring
-
+- Ubuntu 13.10 saucy
+- 
 Authors
 -------------
 Author Name <p.gomersbach@gmail.com>
