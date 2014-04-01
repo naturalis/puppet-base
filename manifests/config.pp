@@ -84,4 +84,9 @@ class base::config {
     }
   }
 
+  exec {"fix_fqdn":
+    command         => "/bin/echo '127.0.0.1   ${hostname}.${domain} ${hostname}' >> /etc/hosts",
+    unless          => "/bin/hostname -f"
+  }
+
 }
