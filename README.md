@@ -72,12 +72,14 @@ mc (Midnight Commander) will be configured with customized defaults, skin used i
 
 Limitations
 -------------
-This module has been built on and tested against Puppet 3.2.3.
+This module has been built on and tested against Puppet 3.2.3. On Ubuntu 10.04 a backported libaugeas-ruby must be installed to prevent errors like: Error: /Stage[main]/Base::Config/Augeas[sudowheel]: Could not evaluate: uninitialized constant Augeas::NO_LOAD 
+backport can be downloaded at: http://packages.ubuntu.com/lucid-backports/amd64/libaugeas-ruby1.8/download , use dpkg -i {package file name} to install version 0.3.0 or higher. 
 
 The module has been tested on:
 - CentOS 6.5
 - CentOS 6.4
 - CentOS 6.3
+- Ubuntu 10.04 lucid * read limitation
 - Ubuntu 12.04 precise
 - Ubuntu 13.04 raring
 - Ubuntu 13.10 saucy
