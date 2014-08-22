@@ -44,7 +44,7 @@ class { base: }
 ```
 Standalone
 ```
-curl https://raw.github.com/naturalis/puppet/master/private/scripts/cloud-puppet.sh > cloud-puppet.sh; chmod +x cloud-puppet.sh;./cloud-puppet.sh base
+curl https://raw.githubusercontent.com/naturalis/puppet/master/private/scripts/cloud-puppet.sh > cloud-puppet.sh; chmod +x cloud-puppet.sh;./cloud-puppet.sh base
 ```
 Openstack / nova client
 ```
