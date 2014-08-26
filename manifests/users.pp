@@ -41,15 +41,20 @@ define  base::users(
   $groups = 'wheel',
 
 ) {
-  user { $username:
+
+
+  user { $username :
     ensure      => present,
-    uid         => $uid,
-    gid         => $gid,
     groups      => $groups,
     shell       => $shell,
     comment     => $comment,
+    stage       => 'initial',
   }
-  
+
+  group { $username :
+    ensure => present,
+  }
+
   file { "/home/${username}":
     ensure  => directory,
     owner   => $username,
@@ -61,12 +66,12 @@ define  base::users(
     ensure  => 'link',
     target  => '/etc/vimrc',
   }
-  
+
   file { "/home/${username}/.screenrc":
     ensure  => 'link',
     target  => '/etc/screenrc',
   }
-  
+
   file { "/home/${username}/.zshrc":
     ensure  => 'link',
     target  => '/etc/zshrc',
@@ -101,7 +106,7 @@ define  base::users(
     group   => $username,
     mode    => '0600',
   }
-  
+
   file { "/home/${username}/.ssh/authorized_keys":
     ensure  => present,
     owner   => $username,
