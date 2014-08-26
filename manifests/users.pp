@@ -48,7 +48,6 @@ define  base::users(
     groups      => $groups,
     shell       => $shell,
     comment     => $comment,
-    stage       => 'initial',
   }
 
   group { $username :
