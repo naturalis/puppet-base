@@ -88,10 +88,4 @@ class base::config {
     command         => "/bin/echo '127.0.0.1   ${hostname}.${domain} ${hostname}' >> /etc/hosts",
     unless          => "/bin/hostname -f"
   }
-
-  # fix bash
-  package { bash:
-    ensure  => latest,
-  }
-
 }
