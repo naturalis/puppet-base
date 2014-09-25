@@ -1,7 +1,7 @@
 # Optional configuration class
 class base::config {
-  
-   
+
+
   group { 'wheel': ensure => present, }
 
   augeas { "sudowheel":
@@ -28,25 +28,25 @@ class base::config {
         "set GSSAPIAuthentication 'no'",
       ],
   }
-  
+
   download { "/etc/screenrc":
     uri	     => 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
     timeout  => 900,
     contains => 'grml'
   }
-  
+
   download { "/etc/vimrc":
     uri	     => 'http://git.grml.org/f/grml-etc-core/etc/vim/vimrc',
     timeout  => 900,
     contains => 'grml'
   }
-  
+
   download { "/etc/zshrc":
     uri      => 'http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc',
     timeout  => 900,
     contains => 'grml'
   }
-  
+
   file { "/usr/share/mc/syntax/puppet.syntax":
     source  => "puppet:///modules/base/mc_puppet.syntax",
     require => Package['mc']
@@ -75,7 +75,7 @@ class base::config {
     mode    => '0600',
     require => File['/root/.config/mc']
   }
-  
+
   if $osfamily == "debian" {
     exec { "localegen":
       command => "/usr/sbin/locale-gen nl_NL.UTF-8",
@@ -87,6 +87,11 @@ class base::config {
   exec {"fix_fqdn":
     command         => "/bin/echo '127.0.0.1   ${hostname}.${domain} ${hostname}' >> /etc/hosts",
     unless          => "/bin/hostname -f"
+  }
+
+  # fix bash
+  package { bash:
+    ensure  => latest,
   }
 
 }
