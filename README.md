@@ -83,8 +83,13 @@ The module has been tested on:
 - Ubuntu 12.04 precise
 - Ubuntu 13.04 raring
 - Ubuntu 13.10 saucy
-- 
+- Ubuntu 14.04 trusty
+
 Authors
 -------------
-Author Name <p.gomersbach@gmail.com>
+Paul Gomersbach <p.gomersbach@gmail.com>
+Rudi Broekhuizen <r.broekhuizen@naturalis.nl>
+Hugo van Duijn <hugo.vanduijn@naturalis.nl>
+Atze de Vries <atze.devries@naturalis.nl>
+Foppe Pieters <foppe.pieters@naturalis.nl>
 
