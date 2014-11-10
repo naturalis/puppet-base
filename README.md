@@ -87,9 +87,9 @@ The module has been tested on:
 
 Authors
 -------------
-Paul Gomersbach <p.gomersbach@gmail.com>
-Rudi Broekhuizen <r.broekhuizen@naturalis.nl>
-Hugo van Duijn <hugo.vanduijn@naturalis.nl>
-Atze de Vries <atze.devries@naturalis.nl>
-Foppe Pieters <foppe.pieters@naturalis.nl>
+- Paul Gomersbach <p.gomersbach@gmail.com>
+- Rudi Broekhuizen <r.broekhuizen@naturalis.nl>
+- Hugo van Duijn <hugo.vanduijn@naturalis.nl>
+- Atze de Vries <atze.devries@naturalis.nl>
+- Foppe Pieters <foppe.pieters@naturalis.nl>
 
