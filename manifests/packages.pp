@@ -2,33 +2,18 @@
 class base::packages {
   case $::operatingsystem {
     centos, redhat: {
-      singleton_resources(
-        Package['sudo'],
-        Package['screen'],
-        Package['zsh'],
-        Package['mc'],
-        Package['wget'],
-        Package['vim-enhanced'],
-        Package['htop'],
-        Package['iftop'],
-        Package['augeas'],
-      )
+	$packages = ['sudo','screen','zsh','mc','wget','vim-enhanced','htop','iftop','augeas','sysstat']
     }
     debian, ubuntu: {
-      singleton_resources(
-        Package['sudo'],
-        Package['screen'],
-        Package['zsh'],
-        Package['mc'],
-        Package['curl'],
-        Package['vim'],
-        Package['htop'],
-        Package['iftop'],
-        Package['augeas-tools'],
-      )
+        $packages = ['sudo','screen','zsh','mc','curl','vim','htop','iftop','augeas-tools','sysstat']
     }
     default: {
       fail('Unrecognized operating system')
     }
   }
+
+  package { $packages:
+    ensure      => installed
+  }
+
 }
