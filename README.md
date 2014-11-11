@@ -19,11 +19,14 @@ Classes
 
 Dependencies
 -------------
-- repoforge
+- puppetlabs/puppetlabs-stdlib
 
 
 Examples
 -------------
+For usage in the foreman baseusers and applicationusers can be changed by setting override for users_hash and application_users_hash, change the content "hiera_based" to the users hash. 
+
+
 Hiera yaml
 ```
 
@@ -37,6 +40,18 @@ baseusers:
     key: "AAAAB3NzaC1yc2EAAAABIwAAAQEAqnrrjV9ge602ChzGnhNCJDWKp1rI0Zwb64yr8evY5ozINNzyHaWGwp20JRQbPmwhd3TQDPI3hQ48n8fTagCGKRUnim25A9Fmx25viXDA7VjmfmJvC11zZgP+7cGploLcU3aOKABOpNu38tOqcI2oUgy
 J9b/H7/re/QT6HutOeLuoKUtctEflWWpYmpYfXlSFrvCmrI11cVLAA6ORuV7HaWitUe6e85bv+Wxu7RICUf4HNjZRJaZdDZkaR55Y+C147qc9VcCJuJFQbOjdhocxr9AJX0ECSeW5aooB3MOvefuCxXSlCgtQTczJhJiXUo97W+/SqzupB57Ju+jnK2Xw
 bQ=="
+applicationusers:
+ letmein2:
+   comment: "Let me In also"
+   shell: "/bin/zsh"
+   ssh_key:
+    type: "ssh-rsa"
+    comment: "let@me.in2"
+    key: "AAAAB3NzaC1yc2EAAAABIwAAAQEAqnrrjV9ge602ChzGnhNCJDWKp1rI0Zwb64yr8evY5ozINNzyHaWGwp20JRQbPmwhd3TQDPI3hQ48n8fTagCGKRUnim25A9Fmx25viXDA7VjmfmJvC11zZgP+7cGploLcU3aOKABOpNu38tOqcI2oUgy
+J9b/H7/re/QT6HutOeLuoKUtctEflWWpYmpYfXlSFrvCmrI11cVLAA6ORuV7HaWitUe6e85bv+Wxu7RICUf4HNjZRJaZdDZkaR55Y+C147qc9VcCJuJFQbOjdhocxr9AJX0ECSeW5aooB3MOvefuCxXSlCgtQTczJhJiXUo97W+/SqzupB57Ju+jnK2Xw
+bQ=="
+
+
 ```
 Puppet code
 ```
@@ -63,6 +78,7 @@ This module installs:
 - htop
 - iftop
 - ntp
+- systat
 
 For debian os family systems this module also installs the nl_NL.UTF8 locale using the locale-gen command. The exec resource can be found in manifests/config.pp
 
