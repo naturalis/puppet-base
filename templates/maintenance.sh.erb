@@ -1,0 +1,23 @@
+#!/bin/bash
+#
+# maintenance script
+#
+#
+#
+
+echo 
+echo 'starting maintenance scripts, date:'
+/bin/date
+<% if scope['::base::maintenance::autoremove_packages'] == true -%>
+  echo 'Removing packages using autoremove'
+  /usr/bin/apt-get autoremove -y
+<% end -%>
+
+<% if scope['::base::maintenance::unattended_upgrades_reboot'] == true -%>
+  if [ -f /var/run/reboot-required ]; then
+        echo 'initiating system shutdown, requested for packages below:'
+        cat /var/run/reboot-required.pkgs
+        /sbin/shutdown -r now
+  fi
+<% end -%>
+

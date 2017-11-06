@@ -1,7 +1,7 @@
 puppet-base
 ===================
 
-Puppet module to install basic system management tools
+Puppet module to install basic system management tools and regular system maintenance tasks
 
 For more information using this tool: https://github.com/naturalis/puppet-base
 
@@ -16,10 +16,12 @@ Classes
 - base::users
 - base::config
 - base::download
+- base::maintenance
 
 Dependencies
 -------------
 - puppetlabs/puppetlabs-stdlib
+- rodjek/puppet-logrotate
 
 
 Examples
@@ -100,6 +102,7 @@ The module has been tested on:
 - Ubuntu 13.04 raring
 - Ubuntu 13.10 saucy
 - Ubuntu 14.04 trusty
+- Ubuntu 16.04 xenial
 
 Authors
 -------------
