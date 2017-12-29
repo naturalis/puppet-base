@@ -2,7 +2,7 @@
 class base::packages {
   case $::operatingsystem {
     centos, redhat: {
-	$packages = ['sudo','screen','zsh','mc','wget','vim-enhanced','htop','iftop','augeas','sysstat']
+    $packages = ['sudo','screen','zsh','mc','wget','vim-enhanced','htop','iftop','augeas','sysstat']
     }
     debian, ubuntu: {
         $packages = ['sudo','screen','zsh','mc','curl','vim','htop','iftop','augeas-tools','sysstat']
@@ -12,8 +12,6 @@ class base::packages {
     }
   }
 
-  package { $packages:
-    ensure      => installed
-  }
+ensure_packages($packages)
 
 }
