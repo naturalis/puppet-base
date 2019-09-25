@@ -5,7 +5,7 @@ class base::packages {
     $packages = ['sudo','screen','zsh','mc','wget','vim-enhanced','htop','iftop','augeas','sysstat']
     }
     debian, ubuntu: {
-        $packages = ['sudo','screen','zsh','mc','curl','vim','htop','iftop','augeas-tools','sysstat']
+        $packages = ['sudo','screen','zsh','mc','curl','vim','htop','iftop','augeas-tools','sysstat','jq']
     }
     default: {
       fail('Unrecognized operating system')
