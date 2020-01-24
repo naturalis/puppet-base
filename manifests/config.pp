@@ -29,22 +29,16 @@ class base::config {
       ],
   }
 
-  base::download { '/etc/screenrc':
-    uri	     => 'http://git.grml.org/f/grml-etc-core/etc/grml/screenrc_generic',
-    timeout  => 900,
-    contains => 'grml'
+  file { '/etc/screenrc':
+    source => 'puppet:///modules/base/screenrc_generic',
   }
 
-  base::download { '/etc/vimrc':
-    uri	     => 'http://git.grml.org/f/grml-etc-core/etc/vim/vimrc',
-    timeout  => 900,
-    contains => 'grml'
+  file { '/etc/vimrc':
+    source => 'puppet:///modules/base/vimrc',
   }
 
-  base::download { '/etc/zshrc':
-    uri      => 'http://git.grml.org/f/grml-etc-core/etc/zsh/zshrc',
-    timeout  => 900,
-    contains => 'grml'
+  file { '/etc/zshrc':
+    source => 'puppet:///modules/base/zshrc',
   }
 
   file { '/usr/share/mc/syntax/puppet.syntax':
