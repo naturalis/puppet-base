@@ -70,14 +70,10 @@ class base::config {
     require => File['/root/.config/mc']
   }
 
-  file { '/usr/bin/puppet':
-    ensure  => link,
-    target  => '/opt/puppetlabs/bin/puppet'
-  }
-
-  file { '/usr/bin/facter':
-    ensure  => link,
-    target  => '/opt/puppetlabs/bin/facter'
+  exec { 'fix puppet3':
+    command => '/usr/sbin/dpkg-reconfigure --reinstall puppet-common facter',
+    path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    unless  => 'puppet --version | grep 3'
   }
 
   if $osfamily == 'debian' {
