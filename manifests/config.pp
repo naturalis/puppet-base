@@ -73,7 +73,7 @@ class base::config {
   exec { 'fix puppet3':
     command => '/usr/sbin/dpkg-reconfigure --reinstall puppet-common facter',
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    unless  => 'puppet --version | grep 3'
+    unless  => 'test -f /usr/bin/puppet'
   }
 
   if $osfamily == 'debian' {
