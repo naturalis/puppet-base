@@ -71,7 +71,7 @@ class base::config {
   }
 
   exec { 'fix puppet3':
-    command => '/usr/sbin/apt install --reinstall puppet-common facter',
+    command => 'apt install --reinstall puppet-common facter',
     path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
     unless  => 'test -f /usr/bin/puppet'
   }
