@@ -25,7 +25,7 @@ class base (
     create_resources('base::users', hiera('applicationusers',{}))
   }
   elsif $application_users_hash == 'none' {
-    notify {'no users created':}
+    notify {'no application users created':}
   }
   else {
     create_resources('base::users', parseyaml($application_users_hash))
